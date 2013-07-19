@@ -4,7 +4,9 @@ from Queue import Queue
 
 
 class Connection(Thread):
-
+	""" 	Database class that handles requests for inserting and selecting items to and from the database.
+		A queue was used for the incoming requests because there was a threading issue with the web server and the database class
+	"""
 	def __init__(self, dbName):
 		super(Connection, self).__init__()
 		self.dbName = dbName

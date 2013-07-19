@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+   <head>
+      <title>My Webpage</title>
+   </head>
+   <body>
+      <table border="1">
+         <tr>
+            <th>Code</th>
+            <th>Description</th>
+            <th>Designer</th>
+            <th>GBP</th>
+            <th>Sale discount</th>
+            <th>Raw Color</th>
+            <th>Source URL</th>
+            <th>Stock status</th>
+            <th>Last updated</th>
+            <th>Type</th>
+         </tr>
+         {% for item in items %}
+         <tr>
+            <td>{{ item['code'] }}</td>
+            <td>{{ item['description'] }}</td>
+            <td>{{ item['designer'] }}</td>
+            <td>{{ item['gbp_price'] }}</td>
+            <td>{{ item['sale_discount'] }}</td>
+            <td>{{ item['raw_color'] }}</td>
+            <td>{{ item['source_url'] }}</td>
+            <td>{{ item['stock_status'] }}</td>
+            <td>{{ item['last_updated'] }}</td>
+            <td>{{ item['type'] }}</td>
+         </tr>
+         {% endfor %}	
+      </table>
+   </body>
+</html>

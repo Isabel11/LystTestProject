@@ -1,4 +1,4 @@
-from flask import Flask, request, json
+from flask import Flask, request, json, render_template
 from dbConnection import Connection
 
 
@@ -7,6 +7,7 @@ db = None
 
 @app.route('/rest/products/', methods=['PUT', 'GET'])
 def products():
+	""" distinguishes between PUT and GET requests and performs actions accordingly"""
 	error = None
 	if request.method == 'GET':
 		items = db.select('SELECT * FROM items')
@@ -27,7 +28,24 @@ def products():
 		return "OK"
 
 
+@app.route('/rest/products/render')
+def render():
+	""" I used this to analyse the output data (testing) """
+	error = None
+	if request.method == 'GET':
+		items = db.select('SELECT * FROM items')
+		columns = db.select('PRAGMA table_info(items)')
+		dicts = []
+		for item in items:
+			item_dict = {}
+			for i, col in enumerate(columns):
+				item_dict[col[1]] = item[i]
+			dicts.append(item_dict)					
+		return render_template('lystTemplateReduced.html', items = dicts)
+
+
 def insertItem(jsonBody):
+	""" calls the database and inserts the values"""
 
 	image_urls = json.dumps(jsonBody['image_urls'])
 	stock_status = json.dumps(jsonBody['stock_status'])

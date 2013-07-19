@@ -2,19 +2,24 @@ from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 from scrapy.http.request import Request
 from lystCrawler.items import OxyItem
-import urlparse, unicodedata, urllib2
+import urlparse
+import unicodedata 
+import urllib2
 
 
 class LystSpider(BaseSpider):
+	""" The spider that crawls the oxygenboutique site, extracts all products and submits it to the web service"""
+
 	name = "lyst"
 	allowed_domains = ["oxygenboutique.com"]
-	start_urls = [	"http://www.oxygenboutique.com/the-looker-skinny-jean-in-sea-storm.aspx",
-			"http://www.oxygenboutique.com/diem-clean-shirt-in-watermelon.aspx",
-			"http://www.oxygenboutique.com/Blok-Military-Booties.aspx"
-		     ]
+	start_urls = [	"http://www.oxygenboutique.com/"]
 
 
 	def parse(self, response):
+		"""	there are three different types of pages: the home page a product page and the product links (collection of all products)
+		   	if the url is the home page the crawler goes through the top navigation bar and  opens all product link pages (recursively)
+			on the product links pages the crawler finds the products for a specific type, e.g. dresses and calls on every single product (recursively)
+		"""
 		hxs = HtmlXPathSelector(response)
 		home_page = hxs.select("//body[@id='home_page']")
 		product_page = hxs.select("//body[@id='product_page']")
@@ -85,8 +90,6 @@ class LystSpider(BaseSpider):
 
 			#Last Updated
 			item['last_updated'] = response.headers['date']
-	
-
 			yield item
 		else:
 			for site in productLinks:
