@@ -8,7 +8,6 @@ db = None
 @app.route('/rest/products/', methods=['PUT', 'GET'])
 def products():
 	""" distinguishes between PUT and GET requests and performs actions accordingly"""
-
 	error = None
 	if request.method == 'GET':
 		items = db.select('SELECT * FROM items')
@@ -32,7 +31,6 @@ def products():
 @app.route('/rest/products/render')
 def render():
 	""" I used this to analyse the output data (testing) """
-
 	error = None
 	if request.method == 'GET':
 		items = db.select('SELECT * FROM items')
