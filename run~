@@ -1,5 +1,5 @@
 #!/bin/bash
-#rm products.db
+rm products.db
 
 #if api start the api; create db if it doesn't exist yet
 if  [ "$1" == "api" ]

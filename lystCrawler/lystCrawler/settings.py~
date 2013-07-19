@@ -17,7 +17,7 @@ ITEM_PIPELINES = ['lystCrawler.pipelines.CleanUpHTMLPipeline',
 		  'lystCrawler.pipelines.FormatCodePipeline',
 		  'lystCrawler.pipelines.DetermineType',
 		  'lystCrawler.pipelines.FindColor',
-		  'lystCrawler.pipelines.JsonExportPipeline']
+		  'lystCrawler.pipelines.PUTPipeline']
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'lystCrawler (+http://www.yourdomain.com)'

@@ -15,8 +15,8 @@ NEWSPIDER_MODULE = 'lystCrawler.spiders'
 ITEM_PIPELINES = ['lystCrawler.pipelines.CleanUpHTMLPipeline', 
 		  'lystCrawler.pipelines.DeterminePriceAndDiscountPipeline',
 		  'lystCrawler.pipelines.FormatCodePipeline',
-		  'lystCrawler.pipelines.DetermineType',
-		  'lystCrawler.pipelines.FindColor',
+		  'lystCrawler.pipelines.DetermineTypePipeline',
+		  'lystCrawler.pipelines.DetermineColorPipeline',
 		  'lystCrawler.pipelines.PUTPipeline']
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

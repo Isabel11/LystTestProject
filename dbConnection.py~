@@ -31,13 +31,9 @@ class Connection(Thread):
 		connection.close()
 
 	def execute(self, request, arg=None, result =None):
-		""" executes a more complex request, e.g. insertion"""
-
 		self.requests.put((request, arg or tuple(), result))
 
 	def select(self, request, arg =None):
-		"""selects from a database """
-
 		result = Queue()
 		self.execute(request, arg, result)
 		ret = []

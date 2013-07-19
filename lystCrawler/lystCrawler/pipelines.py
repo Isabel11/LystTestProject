@@ -11,9 +11,8 @@ from scrapy import signals
 from regex import itemAttributes
 
 
-
 class CleanUpHTMLPipeline(object):
-   """removes empty space, newlines etc and converts unicode into string for later processing"""
+ 	"""removes empty space, newlines etc and converts unicode into string for later processing"""
 
 	def process_item(self, item, spider):
 		for key, value in item.iteritems():
@@ -34,7 +33,7 @@ class CleanUpHTMLPipeline(object):
 				if(len(item[key]) == 0): item[key] = '' 
 		return item
 
- 	   def __stripString(self, string):
+ 	def __stripString(self, string):
 		string = string.rstrip().lstrip()
 		return string
 
@@ -54,7 +53,6 @@ class FormatCodePipeline(object):
 	def process_item(self, item, spider):
 		item['code'] = item['code'].replace('/','').replace('.aspx','')
 		return item
-
 class DetermineTypePipeline(object):
 	""" determines the type of an object (using class regex)"""
 
@@ -81,6 +79,7 @@ class PUTPipeline(object):
 		postResult = connection.getresponse()
 		connection.close()
 		return item
+
 
 
 
