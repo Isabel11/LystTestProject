@@ -19,9 +19,8 @@ class Connection(Thread):
     		cursor = connection.cursor()
 		while True:
 			request, arg, result = self.requests.get()
-			print request
-			print type(arg)
 			if(request == '--close--'):break
+			print "request: ",request
 			cursor.execute(request, arg)
 			connection.commit()
 			if result:
@@ -32,7 +31,7 @@ class Connection(Thread):
 
 	def execute(self, request, arg=None, result =None):
 		""" executes a more complex request, e.g. insertion"""
-
+		print "Request: ", request
 		self.requests.put((request, arg or tuple(), result))
 
 	def select(self, request, arg =None):

@@ -13,7 +13,7 @@ class LystSpider(BaseSpider):
 
 	name = "lyst"
 	allowed_domains = ["oxygenboutique.com"]
-	start_urls = ["http://www.oxygenboutique.com/"]
+	start_urls = ["http://www.oxygenboutique.com/Dalila-Gold-Cap-Lace-Up-Flats.aspx"]
 
 
 	def parse(self, response):
