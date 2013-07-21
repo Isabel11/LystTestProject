@@ -19,8 +19,6 @@ class Connection(Thread):
     		cursor = connection.cursor()
 		while True:
 			request, arg, result = self.requests.get()
-			print request
-			print type(arg)
 			if(request == '--close--'):break
 			cursor.execute(request, arg)
 			connection.commit()

@@ -58,7 +58,7 @@ def getDateString(parameter):
 	""" converts the parameter from the URL into a string that can be used for a databaseRequest """
 	
 	formatted = datetime.datetime.strptime(parameter, "%d-%m-%Y")
-	return formatted.strftime("%a, %d %b %Y %H:%M:%S GMT")
+	return formatted.strftime("%Y-%m-%d %H:%M:%S")
 
 
 def insertItem(jsonBody):

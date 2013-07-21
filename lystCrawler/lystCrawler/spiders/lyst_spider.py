@@ -5,6 +5,7 @@ from lystCrawler.items import OxyItem
 import urlparse
 import unicodedata 
 import urllib2
+import datetime
 
 
 class LystSpider(BaseSpider):
@@ -12,7 +13,7 @@ class LystSpider(BaseSpider):
 
 	name = "lyst"
 	allowed_domains = ["oxygenboutique.com"]
-	start_urls = [	"http://www.oxygenboutique.com/"]
+	start_urls = ["http://www.oxygenboutique.com/"]
 
 
 	def parse(self, response):
@@ -89,7 +90,10 @@ class LystSpider(BaseSpider):
 			item['stock_status']  = size_dict
 
 			#Last Updated
-			item['last_updated'] = response.headers['date']
+			dateFromHeader = response.headers['date']
+			formatted = datetime.datetime.strptime(dateFromHeader, "%a, %d %b %Y %H:%M:%S GMT")			
+			item['last_updated'] = formatted.strftime("%Y-%m-%d %H:%M:%S")
+
 			yield item
 		else:
 			for site in productLinks:
